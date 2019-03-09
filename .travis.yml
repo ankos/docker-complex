@@ -20,3 +20,17 @@ after_success:
   - docker push kosera/complex-nginx
   - docker push kosera/complex-server
   - docker push kosera/complex-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "complex-docker"
+  env: ComplexDocker-env
+  bucket_name: elasticbeanstalk-eu-central-1-244842110621
+  bucket_path: complex-docker
+  on:
+    branch: master
+  access_key_id: 
+    secure: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
