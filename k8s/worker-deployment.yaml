@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: worker
+    spec:
+      containers:
+        - name: worker
+          image: kosera/complex-worker
+          imagePullPolicy: IfNotPresent
+  selector:
+    matchLabels:
+      component: worker

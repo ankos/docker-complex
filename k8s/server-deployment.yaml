@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: client-deployment
+  name: server-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      component: web
+      component: server
   template:
     metadata:
       labels:
-        component: web
+        component: server
     spec:
       containers:
-        - name: client
-          image: kosera/complex-client
+        - name: server
+          image: kosera/complex-server
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
       restartPolicy: Always
-
