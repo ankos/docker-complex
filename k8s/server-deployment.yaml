@@ -13,9 +13,12 @@ spec:
         component: server
     spec:
       containers:
-        - name: server
-          image: kosera/complex-server
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 5000
-      restartPolicy: Always
+      - name: server
+        image: kosera/complex-server
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "150m"
+        ports:
+        - containerPort: 5000
+
